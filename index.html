@@ -39,7 +39,7 @@
   h1{ font-family:var(--display); font-weight:800; text-transform:uppercase; font-size:clamp(3.4rem,8vw,6rem); line-height:.95; letter-spacing:.01em; }
   h2{ font-size:clamp(1.6rem,3vw,2.1rem); line-height:1.2; }
   h3{ font-size:1.15rem; }
-  h4{ font-size:1rem; font-family:var(--sans); font-weight:600; color:var(--muted); margin-bottom:12px; }
+  .group-label{ font-size:1rem; font-family:var(--sans); font-weight:600; color:var(--muted); margin-bottom:12px; }
   p{ margin:0 0 1em; }
   a{ color:var(--garnet); text-decoration:none; }
   a:hover{ text-decoration:underline; }
@@ -137,18 +137,20 @@
   /* Publications */
   .pub-group{ margin-bottom:36px; }
   .pub-list{ counter-reset:pub; }
-  .pub-list li{ position:relative; padding:16px 0 16px 34px; border-top:1px solid var(--border); font-size:.96rem; }
+  .pub-list li{ position:relative; padding:14px 0 14px 34px; border-top:1px solid var(--border); font-size:.96rem; line-height:1.55; }
   .pub-list li:first-child{ border-top:0; }
   .pub-list li::before{ counter-increment:pub; content:counter(pub) "."; position:absolute; left:0; top:16px; color:var(--garnet); font-weight:700; font-family:var(--serif); }
   .pub-list .pi{ font-weight:400; }
-  .pub-list .title{ display:block; margin:4px 0; }
-  .pub-list .venue{ color:var(--muted); font-size:.9rem; }
-  .pub-list a.doi{ font-size:.85rem; margin-left:8px; }
+  .pub-list .title{ display:inline; }
+  .pub-list .venue{ display:inline; font-style:italic; color:var(--muted); }
+  .pub-list .venue::before{ content:" "; }
+  .pub-list a.doi{ font-size:.85rem; margin-left:6px; white-space:nowrap; }
   .pub-note{ color:var(--muted); font-size:.94rem; margin-top:10px; }
-  details.more summary{ cursor:pointer; font-family:var(--serif); font-weight:600; font-size:1.15rem; color:var(--ink); padding:6px 0; list-style:none; }
-  details.more summary::-webkit-details-marker{ display:none; }
-  details.more summary::after{ content:" \2013 show"; font-family:var(--sans); font-weight:400; font-size:.9rem; color:var(--garnet); }
-  details.more[open] summary::after{ content:" \2013 hide"; }
+  .pub-scale{ color:var(--muted); font-size:.95rem; max-width:70ch; margin-bottom:32px; }
+  .pub-group h3 .count{ font-family:var(--sans); font-size:.85rem; font-weight:400; color:var(--muted); }
+  .pub-toggle{ background:none; border:0; padding:10px 0 0; font-family:var(--sans); font-size:.92rem; font-weight:600; color:var(--garnet); cursor:pointer; }
+  .pub-toggle:hover{ text-decoration:underline; }
+  .pub-list.is-clamped li.hidden-item{ display:none; }
 
   /* Honors */
   .service li{ padding:8px 0; border-top:1px solid var(--border); font-size:.96rem; }
@@ -203,8 +205,6 @@
     .btn:hover{ transform:translateY(-2px); }
     .rule{ transition:width .5s ease; }
     .reveal.in .rule, h2.reveal.in + .rule{ width:56px; }
-    details.more summary{ transition:color .2s ease; }
-    details.more summary:hover{ color:var(--garnet); }
     .nav a{ transition:opacity .2s ease; }
   }
 
@@ -239,11 +239,11 @@
     <ul id="navlinks">
       <li><a href="#research">Research</a></li>
       <li><a href="#news">News</a></li>
-      <li><a href="#publications">Publications &amp; talks</a></li>
-      <li><a href="#pi">Lab director</a></li>
+      <li><a href="#publications">Publications &amp; Talks</a></li>
+      <li><a href="#pi">Lab Director</a></li>
       <li><a href="#people">People</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li><a href="#join">Work with us</a></li>
+      <li><a href="#join">Work with Us</a></li>
     </ul>
   </div>
 </header>
@@ -276,29 +276,29 @@
       <p class="prose">The work is organized around three interrelated thrusts, each developing the scientific foundations and decision-support frameworks needed for secure, reliable, resilient, and sustainable smart manufacturing systems.</p>
       <div class="research-grid reveal-group">
         <article>
-          <h3>Secure-by-design manufacturing systems</h3>
+          <h3>Secure-by-Design Manufacturing Systems</h3>
           <div class="q">How do you catch an attack that slips past IT defenses and shows up only in what the machine produces?</div>
           <p>Because cyber-physical attacks alter the physical process rather than just the network, they can compromise an automotive assembly line or a supplier’s machining cell without triggering conventional alarms. We build manufacturing-specific taxonomies and risk models that trace how such threats propagate across a production system, and we develop physics-informed defenses — from monitoring CNC power signals to protecting process data with privacy-preserving transformations — that catch and prevent what cyber-only tools miss.</p>
-          <div class="rep"><span>Representative work</span>
+          <div class="rep"><span>Representative Work</span>
             <a href="https://doi.org/10.1016/j.jmsy.2023.03.009" target="_blank" rel="noopener">Meta-taxonomy of manufacturing cyber threats (J. Manuf. Syst., 2023)</a>
             <a href="https://doi.org/10.1115/1.4063729" target="_blank" rel="noopener">Graph-theoretic cybersecurity risk assessment (ASME JCISE, 2024)</a>
             <a href="https://doi.org/10.1016/j.jmsy.2022.04.012" target="_blank" rel="noopener">Physics-based attack detection in machining (J. Manuf. Syst., 2022)</a>
           </div>
         </article>
         <article>
-          <h3>Explainable analytics for manufacturing</h3>
+          <h3>Explainable Analytics for Manufacturing</h3>
           <div class="q">Why did this defect occur — and can the model tell us?</div>
           <p>In safety-critical production, a prediction is only useful if engineers can act on it. Rather than black-box models, we develop analytics grounded in domain ontologies and causal reasoning — including a conversational AI agent for defect diagnosis and Bayesian causal models of process–structure–property relationships — that explain why defects arise and support reliable decisions, from laser powder bed fusion to water treatment systems.</p>
-          <div class="rep"><span>Representative work</span>
+          <div class="rep"><span>Representative Work</span>
             <a href="https://arxiv.org/abs/2605.01100" target="_blank" rel="noopener">LLM-based decision support for defect analysis (preprint, 2026)</a>
             <a href="https://doi.org/10.1016/j.mfglet.2023.08.132" target="_blank" rel="noopener">Ontology of laser powder bed fusion defects (Manufacturing Letters, 2023)</a>
           </div>
         </article>
         <article>
-          <h3>Resilient &amp; sustainable process design</h3>
+          <h3>Resilient &amp; Sustainable Process Design</h3>
           <div class="q">Can we manufacture where there is no supply chain?</div>
           <p>Whether on the lunar surface or on a factory floor without original design files, resilient manufacturing means working with what is available. We design resource-efficient materials and simulation-driven processes for constrained environments, including a hydrogel-based lunar regolith formulation for in-space 3D printing and a reverse-engineering framework that reconstructs additively manufactured parts from 3D scans to within 0.1% dimensional error when design files are unavailable.</p>
-          <div class="rep"><span>Representative work</span>
+          <div class="rep"><span>Representative Work</span>
             <a href="https://doi.org/10.1016/j.jmapro.2024.03.024" target="_blank" rel="noopener">Hydrogel-based lunar regolith 3D printing (J. Manuf. Processes, 2024)</a>
             <a href="https://doi.org/10.1108/RPJ-06-2024-0267" target="_blank" rel="noopener">Reverse engineering of additively manufactured parts (Rapid Prototyping J., 2026)</a>
           </div>
@@ -311,7 +311,7 @@
   <!-- NEWS -->
   <section id="news">
     <div class="container">
-      <h2 class="reveal">Recent news</h2>
+      <h2 class="reveal">Recent News</h2>
       <hr class="rule">
       <ul class="news-list">
         <!--
@@ -336,12 +336,13 @@
   <!-- PUBLICATIONS -->
   <section id="publications" class="alt">
     <div class="container">
-      <h2 class="reveal">Publications &amp; talks</h2>
+      <h2 class="reveal">Publications &amp; Talks</h2>
       <hr class="rule">
+      <p class="pub-scale">10 journal articles &middot; 1 preprint &middot; 3 conference papers &middot; 4 invited talks &middot; 14 conference presentations. Each group lists its three most recent entries, with the full list one click away.</p>
 
       <div class="pub-group">
-        <h3>Journal articles</h3>
-        <ul class="pub-list">
+        <h3>Journal Articles <span class="count">(10)</span></h3>
+        <ul class="pub-list clampable" data-visible="3" data-label="journal articles">
           <li>Bushra, J., <span class="pi">Rahman, M.H.</span>, Shafae, M., &amp; Budinoff, H.D. (2026). <span class="title">Reverse Engineering of Additively Manufactured Parts: Integrating 3D Scanning and Simulation-Driven Distortion Compensation.</span><span class="venue">Rapid Prototyping Journal</span> <a class="doi" href="https://doi.org/10.1108/RPJ-06-2024-0267" target="_blank" rel="noopener">DOI</a></li>
           <li><span class="pi">Rahman, M.H.</span>, Cassandro, R., Wuest, T., &amp; Shafae, M. (2025). <span class="title">Manufacturing Cybersecurity from Threat to Action: A Taxonomy-Guided Decision Support Framework.</span><span class="venue">Journal of Intelligent Manufacturing</span> <a class="doi" href="https://doi.org/10.1007/s10845-025-02719-w" target="_blank" rel="noopener">DOI</a></li>
           <li><span class="pi">Rahman, M.H.</span>, &amp; Shafae, M. (2025). <span class="title">Cyber-Physical Security Vulnerabilities Identification and Classification in Smart Manufacturing: A Defense-in-Depth Driven Framework and Taxonomy.</span><span class="venue">ASME Journal of Computing and Information Science in Engineering, 25(9): 091005</span> <a class="doi" href="https://doi.org/10.1115/1.4068844" target="_blank" rel="noopener">DOI</a></li>
@@ -356,15 +357,15 @@
       </div>
 
       <div class="pub-group">
-        <h3>Preprints</h3>
+        <h3>Preprints <span class="count">(1)</span></h3>
         <ul class="pub-list">
           <li>Shahriar, B.M., &amp; <span class="pi">Rahman, M.H.</span> (2026). <span class="title">A Knowledge-Driven LLM-Based Decision-Support System for Explainable Defect Analysis and Mitigation Guidance in Laser Powder Bed Fusion.</span><span class="venue">arXiv:2605.01100</span> <a class="doi" href="https://arxiv.org/abs/2605.01100" target="_blank" rel="noopener">arXiv</a></li>
         </ul>
       </div>
 
       <div class="pub-group">
-        <h3>Selected conference papers</h3>
-        <ul class="pub-list">
+        <h3>Selected Conference Papers <span class="count">(3)</span></h3>
+        <ul class="pub-list clampable" data-visible="3" data-label="conference papers">
           <li>Lin, Y., Shao, S., <span class="pi">Rahman, M.H.</span>, Shafae, M., &amp; Satam, P. (2024). <span class="title">DT4I4-Secure: Digital Twin Framework for Industry 4.0 Systems Security.</span><span class="venue">IEEE 14th UEMCON 2023</span> <a class="doi" href="https://dx.doi.org/10.1109/UEMCON59035.2023.10316090" target="_blank" rel="noopener">DOI</a></li>
           <li><span class="pi">Rahman, M.H.</span>, Son, Y.J., &amp; Shafae, M. (2023). <span class="title">Taxonomy-Driven Cyberattack Graphical Models for Cybersecurity Risk Modeling and Assessment in Smart Manufacturing Systems.</span><span class="venue">IISE Annual Conference and Expo</span></li>
           <li>Rifat, M., <span class="pi">Rahman, M.H.</span>, &amp; Das, D. (2017). <span class="title">A Review on Application of Nanofluid MQL in Machining.</span><span class="venue">AIP Conference Proceedings, 1919(1), 1–10</span> <a class="doi" href="https://doi.org/10.1063/1.5018533" target="_blank" rel="noopener">DOI</a></li>
@@ -373,8 +374,8 @@
 
 
       <div class="pub-group">
-        <h3>Invited talks</h3>
-        <ul class="pub-list">
+        <h3>Invited Talks <span class="count">(4)</span></h3>
+        <ul class="pub-list clampable" data-visible="3" data-label="invited talks">
           <li><span class="pi">Rahman, M.H.</span>, &amp; Shafae, M. (2025). <span class="title">Privacy-Preserved Melt Pool Image Data Storing and Sharing in Metal Additive Manufacturing Processes.</span><span class="venue">ASTM International Conference on Advanced Manufacturing, Las Vegas, NV</span></li>
           <li><span class="pi">Rahman, M.H.</span>, Son, Y.J., &amp; Shafae, M. (2023). <span class="title">Taxonomy-Driven Graph-Theoretic Approach for Manufacturing Cybersecurity Risk Modeling and Assessment.</span><span class="venue">INFORMS Annual Meeting, Phoenix, AZ</span></li>
           <li>Hasan, N., <span class="pi">Rahman, M.H.</span>, Wessman, A., Smith, T., &amp; Shafae, M. (2023). <span class="title">Process Defects Knowledge Modeling in Laser Powder Bed Fusion Additive Manufacturing: An Ontological Framework.</span><span class="venue">INFORMS Annual Meeting, Phoenix, AZ</span></li>
@@ -382,9 +383,9 @@
         </ul>
       </div>
 
-      <details class="pub-group more">
-        <summary>Conference presentations (14)</summary>
-        <ul class="pub-list">
+      <div class="pub-group">
+        <h3>Conference Presentations <span class="count">(14)</span></h3>
+        <ul class="pub-list clampable" data-visible="3" data-label="conference presentations">
           <li>Enayet, R., &amp; <span class="pi">Rahman, M.H.</span> (2026). <span class="title">Data-Driven Bayesian Network Modeling for Causal Interpretability of Process–Structure–Property Relationships in Laser Powder Bed Fusion.</span><span class="venue">ASME International Manufacturing Science and Engineering Conference (MSEC), State College, PA</span></li>
           <li><span class="pi">Rahman, M.H.</span>, Hasan, N., &amp; Shafae, M. (2025). <span class="title">Privacy Preserved Melt Pool Data Sharing in Metal Additive Manufacturing Processes.</span><span class="venue">IISE Annual Conference and Expo, Atlanta, GA</span></li>
           <li>Mowlai, R., <span class="pi">Rahman, M.H.</span>, &amp; Shafae, M. (2025). <span class="title">Data-Driven Optimization and Monitoring of Ultrafiltration Water Treatment Systems.</span><span class="venue">IISE Annual Conference and Expo, Atlanta, GA</span></li>
@@ -400,7 +401,7 @@
           <li>Shafae, M., &amp; <span class="pi">Rahman, M.H.</span> (2021). <span class="title">Cybersecurity Framework for Vulnerabilities Identification and Mitigation in Manufacturing Systems.</span><span class="venue">ASTM International Conference on Additive Manufacturing, Anaheim, CA</span></li>
           <li>Rifat, M., <span class="pi">Rahman, M.H.</span>, &amp; Das, D. (2017). <span class="title">A Review on Application of Nanofluid MQL in Machining.</span><span class="venue">International Conference on Mechanical Engineering, Dhaka, Bangladesh</span></li>
         </ul>
-      </details>
+      </div>
 
       <p class="pub-note">Three additional manuscripts are under review and four are in preparation. See the <a href="https://scholar.google.com/citations?user=m_Pmc80AAAAJ&hl=en" target="_blank" rel="noopener">full publication list on Google Scholar</a>.</p>
     </div>
@@ -409,7 +410,7 @@
   <!-- LAB DIRECTOR -->
   <section id="pi">
     <div class="container">
-      <h2 class="reveal">Lab director</h2>
+      <h2 class="reveal">Lab Director</h2>
       <hr class="rule">
       <div class="about-grid">
         <div>
@@ -466,14 +467,14 @@
       </div>
 
 
-      <h3 class="subhead">Service &amp; memberships</h3>
+      <h3 class="subhead">Service &amp; Memberships</h3>
       <ul class="service prose">
         <li>Reviewer for <em>Additive Manufacturing</em>, <em>ASME Journal of Computing and Information Science in Engineering</em>, <em>Computers &amp; Security</em>, <em>Energy</em>, <em>Expert Systems with Applications</em>, and the <em>International Journal of Critical Infrastructure Protection</em>, among others (about 30 manuscripts since 2022)</li>
         <li>Session chair, INFORMS Annual Meeting and IISE Annual Conference and Expo</li>
         <li>Member, ASME, IISE, and INFORMS</li>
       </ul>
 
-      <h3 class="subhead">Honors &amp; awards</h3>
+      <h3 class="subhead">Honors &amp; Awards</h3>
       <ul class="honors">
         <li><span class="yr">2025–2026</span><span>Fellow, Grants Intensive Fellowship Program, UMass Dartmouth</span></li>
         <li><span class="yr">2025</span><span>Office of Faculty Development Scholarship and Teaching Grant, UMass Dartmouth</span></li>
@@ -491,7 +492,7 @@
     <div class="container">
       <h2 class="reveal">People</h2>
       <hr class="rule">
-      <h4>Ph.D. students</h4>
+      <h3 class="group-label">Ph.D. Students</h3>
       <div class="people-grid reveal-group">
         <div class="person">
           <div class="initials">BS</div>
@@ -517,7 +518,7 @@
         WHEN YOU HAVE M.S. OR UNDERGRADUATE STUDENTS: remove the comment markers around
         the block(s) below and fill in the cards. Copy a card to add more people.
 
-      <h4 class="subhead">M.S. students</h4>
+      <h3 class="group-label subhead">M.S. Students</h3>
       <div class="people-grid reveal-group">
         <div class="person">
           <div class="initials">AB</div>
@@ -527,7 +528,7 @@
         </div>
       </div>
 
-      <h4 class="subhead">Undergraduate researchers</h4>
+      <h3 class="group-label subhead">Undergraduate Researchers</h3>
       <div class="people-grid reveal-group">
         <div class="person">
           <div class="initials">CD</div>
@@ -538,7 +539,7 @@
       </div>
       -->
 
-      <h4 class="subhead">Alumni</h4>
+      <h3 class="group-label subhead">Alumni</h3>
       <ul class="alumni">
         <li><span class="yr">May 2026</span><span>Myriam Iralien, M.S. Mechanical Engineering — Floating system design for microplastic removal</span></li>
         <li><span class="yr">Aug 2025</span><span>Suresh Bhukya, M.S. Mechanical Engineering — Production scheduling optimization</span></li>
@@ -550,7 +551,7 @@
         <li><span class="yr">May 2025</span><span>Ramana Sai Payili, M.S. Data Science — Brain tumor classification</span></li>
       </ul>
 
-      <h4 class="subhead">Collaborating institutions</h4>
+      <h3 class="group-label subhead">Collaborating Institutions</h3>
       <ul class="collab">
         <li>University of Arizona</li>
         <li>Purdue University</li>
@@ -589,7 +590,7 @@
           Columbia, SC 29208</p>
         </div>
         <div>
-          <h3>Reach out</h3>
+          <h3>Reach Out</h3>
           <p>Email: <a href="mailto:habiborrahman@sc.edu">habiborrahman [at] sc.edu</a></p>
 
         </div>
@@ -602,13 +603,13 @@
     <div class="container">
       <div class="join-box">
         <div>
-          <h2 class="reveal">Join the lab</h2>
+          <h2 class="reveal">Join the Lab</h2>
           <p>We are currently welcoming undergraduate students interested in manufacturing cybersecurity, cyber-physical systems, or data-driven process monitoring — problems increasingly drawn from the automotive, aerospace, and electric-vehicle manufacturing base around us. We do not have open Ph.D. or M.S. positions at this time; graduate openings will be posted here as funding becomes available.</p>
           <p>If you'd like to get involved, send a short note describing your background, what interests you in our work, and (ideally) which of our recent papers you found most relevant, along with your CV or transcript.</p>
           <a class="btn btn-primary" href="mailto:habiborrahman@sc.edu">Email Habibor Rahman</a>
         </div>
         <div>
-          <h3>What we look for</h3>
+          <h3>What We Look For</h3>
           <ul>
             <li>Curiosity about how manufacturing, security, and data intersect</li>
             <li>Comfort with programming and quantitative methods, or a readiness to develop them</li>
@@ -620,7 +621,7 @@
 
       <div class="collab-box" id="collaborate">
         <div>
-          <h2 class="reveal">Collaborate with us</h2>
+          <h2 class="reveal">Collaborate with Us</h2>
           <p>Few of the problems we work on sit inside one discipline, so much of our work is collaborative — with manufacturers who bring production data and open questions, with colleagues in computing, materials, and industrial engineering, and with national laboratories and funding agencies. That is especially true in South Carolina, where automotive OEMs and their supplier networks, aerospace manufacturers, and a fast-growing electric-vehicle and battery cluster face exactly the security and quality challenges we study. If our research overlaps with yours, or you have a manufacturing security or process-quality problem you would like to explore, we would be glad to hear from you.</p>
           <a class="btn btn-primary" href="mailto:habiborrahman@sc.edu">Start a conversation</a>
         </div>
@@ -637,28 +638,31 @@
 
 <script>
 (function(){
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce || !('IntersectionObserver' in window)) return;
+  // --- Always on: long publication lists show the most recent few, with a control to reveal the rest.
+  Array.prototype.forEach.call(document.querySelectorAll('.pub-list.clampable'), function(list){
+    var keep = parseInt(list.getAttribute('data-visible'), 10) || 5;
+    var items = list.querySelectorAll('li');
+    if (items.length <= keep) return;
+    var label = list.getAttribute('data-label') || 'entries';
+    var btn = document.createElement('button');
+    btn.className = 'pub-toggle';
+    btn.setAttribute('aria-expanded', 'false');
+    function apply(open){
+      Array.prototype.forEach.call(items, function(li, i){
+        li.classList.toggle('hidden-item', !open && i >= keep);
+      });
+      list.classList.toggle('is-clamped', !open);
+      btn.textContent = open ? 'Show fewer' : 'Show all ' + items.length + ' ' + label;
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    apply(false);
+    btn.addEventListener('click', function(){ apply(btn.getAttribute('aria-expanded') === 'false'); });
+    list.parentNode.insertBefore(btn, list.nextSibling);
+  });
 
-  // Elements that fade up as they enter the viewport
-  var targets = document.querySelectorAll('h2.reveal, .research-grid article, .person, .pub-group, .news-list li, .collab-box, .join-box, .cv-grid, .contact-grid > div');
-  Array.prototype.forEach.call(targets, function(el){ el.classList.add('reveal'); });
+  if (!('IntersectionObserver' in window)) return;
 
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-    });
-  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-
-  Array.prototype.forEach.call(targets, function(el){ io.observe(el); });
-
-  // Safety net: nothing may stay invisible. If an element hasn't revealed within
-  // 3s (anchor landings, restored scroll positions, odd viewports), show it.
-  setTimeout(function(){
-    Array.prototype.forEach.call(targets, function(el){ el.classList.add('in'); });
-  }, 3000);
-
-  // Highlight the nav link for the section currently in view
+  // --- Always on: highlight the nav link for the section currently in view.
   var links = {}, sections = [];
   Array.prototype.forEach.call(document.querySelectorAll('#navlinks a[href^="#"]'), function(a){
     var id = a.getAttribute('href').slice(1), sec = document.getElementById(id);
@@ -671,6 +675,24 @@
     });
   }, { rootMargin: '-45% 0px -50% 0px' });
   sections.forEach(function(sec){ navIO.observe(sec); });
+
+  // --- Motion only: fade sections in as they enter the viewport.
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var targets = document.querySelectorAll('h2.reveal, .research-grid article, .person, .pub-group, .news-list li, .collab-box, .join-box, .cv-grid, .contact-grid > div');
+  Array.prototype.forEach.call(targets, function(el){ el.classList.add('reveal'); });
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  Array.prototype.forEach.call(targets, function(el){ io.observe(el); });
+
+  // Safety net: nothing may stay invisible.
+  setTimeout(function(){
+    Array.prototype.forEach.call(targets, function(el){ el.classList.add('in'); });
+  }, 3000);
 })();
 </script>
 </body>
