@@ -185,6 +185,29 @@
   .contact-grid h3{ margin-bottom:10px; }
   .contact-grid p{ color:var(--muted); font-size:.96rem; }
 
+  /* Motion — subtle, and fully disabled for users who prefer reduced motion */
+  @media (prefers-reduced-motion: no-preference){
+    .has-js .reveal{ opacity:0; transform:translateY(14px); }
+    .has-js .reveal.in{ opacity:1; transform:none; transition:opacity .55s ease, transform .55s cubic-bezier(.22,.61,.36,1); }
+    .has-js .reveal.in:nth-child(2){ transition-delay:.07s; }
+    .has-js .reveal.in:nth-child(3){ transition-delay:.14s; }
+    .has-js .reveal.in:nth-child(4){ transition-delay:.21s; }
+
+    .research-grid article, .person{ transition:transform .3s ease, border-color .3s ease; }
+    .research-grid article:hover, .person:hover{ transform:translateY(-3px); }
+    .collab li{ transition:background .25s ease, border-color .25s ease; }
+    .collab li:hover{ background:var(--paper); border-color:var(--garnet); }
+    .pub-list li, .news-list li, .honors li, .alumni li, .service li{ transition:background .25s ease; }
+    .pub-list li:hover, .news-list li:hover, .alumni li:hover{ background:rgba(115,0,10,.035); }
+    .btn{ transition:transform .18s ease, background .2s ease, color .2s ease; }
+    .btn:hover{ transform:translateY(-2px); }
+    .rule{ transition:width .5s ease; }
+    .reveal.in .rule, h2.reveal.in + .rule{ width:56px; }
+    details.more summary{ transition:color .2s ease; }
+    details.more summary:hover{ color:var(--garnet); }
+    .nav a{ transition:opacity .2s ease; }
+  }
+
   footer{ padding:36px 0; text-align:center; color:var(--muted); font-size:.88rem; border-top:1px solid var(--border); }
   footer .stamp{ display:block; margin-top:6px; font-size:.82rem; }
 
@@ -204,6 +227,7 @@
 </style>
 </head>
 <body>
+<script>document.documentElement.classList.add('has-js');</script>
 
 <div class="announce">
   <div class="container">Undergraduates interested in manufacturing security or data-driven process monitoring, and industry or academic collaborators: <a href="#join">we would like to hear from you</a>.</div>
@@ -246,11 +270,11 @@
   <!-- RESEARCH -->
   <section id="research" class="alt">
     <div class="container">
-      <h2>Research</h2>
+      <h2 class="reveal">Research</h2>
       <hr class="rule">
       <p class="prose">Founded in 2026 in the Department of Mechanical Engineering at the University of South Carolina, the IRIS Lab bridges manufacturing, cybersecurity, and data science to make industrial systems more secure, explainable, and resilient. South Carolina is home to the world’s largest BMW plant, Volvo and Mercedes-Benz assembly operations, Boeing’s 787 facility, and Scout Motors’ new electric-vehicle plant taking shape just outside Columbia — an industrial base whose security and quality challenges shape the lab’s agenda. The lab’s aim is to turn security-aware system design and explainable analytics into methods these manufacturers can put into practice.</p>
       <p class="prose">The work is organized around three interrelated thrusts, each developing the scientific foundations and decision-support frameworks needed for secure, reliable, resilient, and sustainable smart manufacturing systems.</p>
-      <div class="research-grid">
+      <div class="research-grid reveal-group">
         <article>
           <h3>Secure-by-design manufacturing systems</h3>
           <div class="q">How do you catch an attack that slips past IT defenses and shows up only in what the machine produces?</div>
@@ -287,7 +311,7 @@
   <!-- NEWS -->
   <section id="news">
     <div class="container">
-      <h2>Recent news</h2>
+      <h2 class="reveal">Recent news</h2>
       <hr class="rule">
       <ul class="news-list">
         <!--
@@ -312,7 +336,7 @@
   <!-- PUBLICATIONS -->
   <section id="publications" class="alt">
     <div class="container">
-      <h2>Publications &amp; talks</h2>
+      <h2 class="reveal">Publications &amp; talks</h2>
       <hr class="rule">
 
       <div class="pub-group">
@@ -385,7 +409,7 @@
   <!-- LAB DIRECTOR -->
   <section id="pi">
     <div class="container">
-      <h2>Lab director</h2>
+      <h2 class="reveal">Lab director</h2>
       <hr class="rule">
       <div class="about-grid">
         <div>
@@ -465,10 +489,10 @@
   <!-- PEOPLE -->
   <section id="people" class="alt">
     <div class="container">
-      <h2>People</h2>
+      <h2 class="reveal">People</h2>
       <hr class="rule">
       <h4>Ph.D. students</h4>
-      <div class="people-grid">
+      <div class="people-grid reveal-group">
         <div class="person">
           <div class="initials">BS</div>
           <div class="name">Basit Mahmud Shahriar</div>
@@ -494,7 +518,7 @@
         the block(s) below and fill in the cards. Copy a card to add more people.
 
       <h4 class="subhead">M.S. students</h4>
-      <div class="people-grid">
+      <div class="people-grid reveal-group">
         <div class="person">
           <div class="initials">AB</div>
           <div class="name">Full Name</div>
@@ -504,7 +528,7 @@
       </div>
 
       <h4 class="subhead">Undergraduate researchers</h4>
-      <div class="people-grid">
+      <div class="people-grid reveal-group">
         <div class="person">
           <div class="initials">CD</div>
           <div class="name">Full Name</div>
@@ -553,7 +577,7 @@
   <!-- CONTACT -->
   <section id="contact">
     <div class="container">
-      <h2>Contact</h2>
+      <h2 class="reveal">Contact</h2>
       <hr class="rule">
       <div class="contact-grid">
         <div>
@@ -578,7 +602,7 @@
     <div class="container">
       <div class="join-box">
         <div>
-          <h2>Join the lab</h2>
+          <h2 class="reveal">Join the lab</h2>
           <p>We are currently welcoming undergraduate students interested in manufacturing cybersecurity, cyber-physical systems, or data-driven process monitoring — problems increasingly drawn from the automotive, aerospace, and electric-vehicle manufacturing base around us. We do not have open Ph.D. or M.S. positions at this time; graduate openings will be posted here as funding becomes available.</p>
           <p>If you'd like to get involved, send a short note describing your background, what interests you in our work, and (ideally) which of our recent papers you found most relevant, along with your CV or transcript.</p>
           <a class="btn btn-primary" href="mailto:habiborrahman@sc.edu">Email Habibor Rahman</a>
@@ -596,7 +620,7 @@
 
       <div class="collab-box" id="collaborate">
         <div>
-          <h2>Collaborate with us</h2>
+          <h2 class="reveal">Collaborate with us</h2>
           <p>Few of the problems we work on sit inside one discipline, so much of our work is collaborative — with manufacturers who bring production data and open questions, with colleagues in computing, materials, and industrial engineering, and with national laboratories and funding agencies. That is especially true in South Carolina, where automotive OEMs and their supplier networks, aerospace manufacturers, and a fast-growing electric-vehicle and battery cluster face exactly the security and quality challenges we study. If our research overlaps with yours, or you have a manufacturing security or process-quality problem you would like to explore, we would be glad to hear from you.</p>
           <a class="btn btn-primary" href="mailto:habiborrahman@sc.edu">Start a conversation</a>
         </div>
@@ -611,5 +635,43 @@
   <span class="stamp">Last updated September 2026</span>
 </footer>
 
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)) return;
+
+  // Elements that fade up as they enter the viewport
+  var targets = document.querySelectorAll('h2.reveal, .research-grid article, .person, .pub-group, .news-list li, .collab-box, .join-box, .cv-grid, .contact-grid > div');
+  Array.prototype.forEach.call(targets, function(el){ el.classList.add('reveal'); });
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+  Array.prototype.forEach.call(targets, function(el){ io.observe(el); });
+
+  // Safety net: nothing may stay invisible. If an element hasn't revealed within
+  // 3s (anchor landings, restored scroll positions, odd viewports), show it.
+  setTimeout(function(){
+    Array.prototype.forEach.call(targets, function(el){ el.classList.add('in'); });
+  }, 3000);
+
+  // Highlight the nav link for the section currently in view
+  var links = {}, sections = [];
+  Array.prototype.forEach.call(document.querySelectorAll('#navlinks a[href^="#"]'), function(a){
+    var id = a.getAttribute('href').slice(1), sec = document.getElementById(id);
+    if (sec){ links[id] = a; sections.push(sec); }
+  });
+  var navIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var a = links[e.target.id];
+      if (a) a.style.opacity = e.isIntersecting ? '1' : '';
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(function(sec){ navIO.observe(sec); });
+})();
+</script>
 </body>
 </html>
